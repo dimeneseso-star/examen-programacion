@@ -18,6 +18,27 @@ def validar_codigo(codigo, productos):
     if codigo in productos:
         return False
     return True
+def buscar_precio(precio_min, precio_max, productos, inventario):
+    lista_filtrada = []
+    
+    for codigo, datos in productos.items():
+        nombre= datos[0]
+        precio= datos[2]
+        stock=inventario[codigo][0]
+        
+        if precio_min <= precio <= precio_max and stock > 0:
+            lista_filtrada.append(f"{nombre}--{codigo}")
+            
+    lista_filtrada.sort()
+    
+    
+    if lista_filtrada:
+        print(f"\nProductos encontrados entre ${precio_min} y ${precio_max}")
+        for item in lista_filtrada:
+            print(item)
+            
+    else:
+        print("\nNo se a encontrado productos disponibles en ese rango de precios")
 
 def leer_opcion():
     try:

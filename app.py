@@ -37,6 +37,12 @@ def main():
             case "2":
                 os.system("cls")
                 print("Buscar productos por rango de precios")
+                try:
+                    precio_min=int(input("Ingrese el precio minimo: "))
+                    precio_max=int(input("Ingrese el precio maximo: "))
+                    me.buscar_precio(precio_min, precio_max, productos, inventario)
+                except ValueError:
+                    print("\n[ERROR]: debe ingresar valores numericos adecuados")
                 os.system("pause")
             case "3":
                 os.system("cls")
