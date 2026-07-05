@@ -46,7 +46,16 @@ def main():
                 os.system("pause")
             case "3":
                 os.system("cls")
-                
+                print("Actualizar precios de un producto")
+                codigo=input("ingrese el codigo del producto (ej:P0101): ").strip().upper()
+                if codigo in productos:
+                    try:
+                        nuevo_precio=int(input("Ingrese el nuevo precio: "))
+                        me.actualizar_precio(codigo, nuevo_precio, productos)
+                    except ValueError:
+                        print("\n[Error]: El precio debe ser un valor numerico entero")
+                else:
+                    print("\n[ERROR]: El codigo ingresado no existe en el sistema")
                 os.system("pause")
             case "4":
                 os.system("cls")

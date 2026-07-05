@@ -39,6 +39,8 @@ def buscar_precio(precio_min, precio_max, productos, inventario):
             
     else:
         print("\nNo se a encontrado productos disponibles en ese rango de precios")
+def actualizar_precio(codigo, nuevo_precio, productos):
+    productos[codigo][2] = nuevo_precio
 
 def leer_opcion():
     try:
