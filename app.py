@@ -31,18 +31,30 @@ def main():
             case "1":
                 os.system("cls")
                 print("Buscar stock por categoria")
-                categoria_buscar = str(input("Ingrese la categoria del producto (Accesorios/Papelería):"))
-                me.stock_categoria(categoria_buscar, productos, inventario)
+                categoria_buscar = input("Ingrese la categoria del producto (Accesorios/Papelería): ").strip()
+                
+                encontrado, total = me.stock_categoria(categoria_buscar, productos, inventario)
+                if encontrado:
+                    print(f"\nEl stock total para la categoría '{categoria_buscar}' es: {total}")
+                else:
+                    print(f"\nNo se encontraron productos en la categoría '{categoria_buscar}'.")
                 os.system("pause")
             case "2":
                 os.system("cls")
                 print("Buscar productos por rango de precios")
                 try:
-                    precio_min=int(input("Ingrese el precio minimo: "))
-                    precio_max=int(input("Ingrese el precio maximo: "))
-                    me.buscar_precio(precio_min, precio_max, productos, inventario)
+                    precio_min = int(input("Ingrese el precio minimo: "))
+                    precio_max = int(input("Ingrese el precio maximo: "))
+                    
+                    resultados = me.buscar_precio(precio_min, precio_max, productos, inventario)
+                    if resultados:
+                        print(f"\nProductos encontrados entre ${precio_min} y ${precio_max}:")
+                        for item in resultados:
+                            print(item)
+                    else:
+                        print("\nNo se han encontrado productos disponibles en ese rango de precios.")
                 except ValueError:
-                    print("\n[ERROR]: debe ingresar valores numericos adecuados")
+                    print("\n[ERROR]: Debe ingresar valores numéricos adecuados.")
                 os.system("pause")
             case "3":
                 os.system("cls")
