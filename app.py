@@ -63,16 +63,38 @@ def main():
                 codigo=input("Ingrese nuevo codigo (ej P105):").strip().upper()
                 if me.validar_codigo(codigo, productos):
                     print("¡Codigo validado!, ingrese los datos del producto")
+                    nombre=input("Ingrese el nombre: ").strip()
+                    categoria=input("Ingrese categoria (Accesorios/Papelería): ").strip()
+                    try:
+                        precio=int(input("Ingrese el precio: "))
+                        
+                        disp_input=input("¿Esta disponible? (s/n): ").strip().lower()
+                        disponible =True if disp_input == "s" else False
+                        
+                        stock= int(input("Ingrese el stock inicial: "))
+                        vendidos= int(input("Ingrese las unidades vendidas: "))
+                        
+                        me.agregar_producto(codigo, nombre, categoria, precio, disponible, stock, vendidos, productos, inventario)
+                        print("\n¡Producto registrado y agregado al inventario con exito!")
+                    except ValueError:
+                        print("\n[ERROR]: El precio, stock y vendidos deben ser numeros enteros")
                 else:
                     print("ERROR, el codigo esta con espacios o ya existe")
                 os.system("pause")
             case "5":
                 os.system("cls")
-                
+                print("Eliminar producto")
+                codigo=input("Ingrese el codigo del producto a eliminar: ").strip().upper()
+                if codigo in productos:
+                    me.eliminar_producto(codigo, productos, inventario)
+                    print(f"\n¡El producto {codigo} ha sido eliminado correctamente!")
+                else:
+                    print("\n[ERROR]: El codigo ingresado no existe en el sistema")
                 os.system("pause")
             case "6":
                 os.system("cls")
-                
+                print("Listado de productos en el sistema")
+                me.mostrar_productos(productos, inventario)
                 os.system("pause")
             case "7":
                 os.system("cls")

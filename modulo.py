@@ -41,6 +41,29 @@ def buscar_precio(precio_min, precio_max, productos, inventario):
         print("\nNo se a encontrado productos disponibles en ese rango de precios")
 def actualizar_precio(codigo, nuevo_precio, productos):
     productos[codigo][2] = nuevo_precio
+def agregar_producto(codigo, nombre, categoria, precio, disponible, stock, vendidos, productos, inventario):
+    productos[codigo]=[nombre, categoria, precio, disponible]
+    inventario[codigo]=[stock, vendidos]
+def eliminar_producto(codigo, productos, inventario):
+    del productos[codigo]
+    del inventario[codigo]
+def mostrar_productos(productos, inventario):
+    if not productos:
+        print("No hay productos registrados en el sistema")
+        return
+    
+    print(f"{"Codigo":<8}{"Nombre":<12}{"Categoria":<12}{"Precio":<8}{"Disp":<6}{"Stock":<6}{"Vendidos":<8}")
+    print("-" * 65)
+    for codigo, datos in productos.items():
+        nombre=datos[0]
+        categoria=datos[1]
+        precio=datos[2]
+        disponible= "Si" if datos[3] else "No"
+        
+        stock=inventario[codigo][0]
+        vendidos=inventario[codigo][1]
+        
+        print(f"{codigo:<8}{nombre:<12}{categoria:<12}${precio:<7}{disponible:<6}{stock:<6}{vendidos:<8}")
 
 def leer_opcion():
     try:
