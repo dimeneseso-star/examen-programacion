@@ -9,6 +9,7 @@ def main():
     "P103": ["Botella", "Accesorios", 6990, False],
     "P104": ["Mochila", "Accesorios", 24990, True]
     }
+    #Diccionario inventario: [stock, vendidos]
     inventario = {
     "P101": [30, 15],
     "P102": [120, 50],
@@ -28,6 +29,7 @@ def main():
         ===============================================
         Ingrese una opcion: """)).strip()
         match (opcion):
+            #Opcion de Stock por categoria
             case "1":
                 os.system("cls")
                 print("Buscar stock por categoria")
@@ -39,6 +41,7 @@ def main():
                 else:
                     print(f"\nNo se encontraron productos en la categoría '{categoria_buscar}'.")
                 os.system("pause")
+            #Opcion de Buscar productos por rango de precio
             case "2":
                 os.system("cls")
                 print("Buscar productos por rango de precios")
@@ -56,6 +59,7 @@ def main():
                 except ValueError:
                     print("\n[ERROR]: Debe ingresar valores numéricos adecuados.")
                 os.system("pause")
+            #Opcion para actualizar precio
             case "3":
                 os.system("cls")
                 print("Actualizar precios de un producto")
@@ -69,6 +73,7 @@ def main():
                 else:
                     print("\n[ERROR]: El codigo ingresado no existe en el sistema")
                 os.system("pause")
+            #Opcion para agregar producto
             case "4":
                 os.system("cls")
                 print("Agregar producto")
@@ -93,6 +98,7 @@ def main():
                 else:
                     print("ERROR, el codigo esta con espacios o ya existe")
                 os.system("pause")
+            #Opcion para eliminar producto
             case "5":
                 os.system("cls")
                 print("Eliminar producto")
@@ -103,15 +109,18 @@ def main():
                 else:
                     print("\n[ERROR]: El codigo ingresado no existe en el sistema")
                 os.system("pause")
+            #Opcion para listar los productos
             case "6":
                 os.system("cls")
                 print("Listado de productos en el sistema")
                 me.mostrar_productos(productos, inventario)
                 os.system("pause")
+            #Opcion para salir del menu
             case "7":
                 os.system("cls")
                 print("Cerrando aplicacion....")
                 break
+            #Opcion que se activa en caso de elegir una opcion no valida
             case _:
                 os.system("cls")
                 print(" <<< Debe seleccionar una opción válida... >>> ")
